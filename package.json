@@ -1,0 +1,12 @@
+{
+  "name": "company-website-128",
+  "version": "1.0.0",
+  "description": "This is our CSIT128 Project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
