@@ -1,5 +1,6 @@
-// NOTE: muste change later, THIS IS ONLY FOR SETUP PURPOSES
+// NOTE: THIS CODE IS ONLY FOR REFERENCE
 
+/*
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -43,4 +44,40 @@ const server = http.createServer((req, res) => {
 // Start the server on port 3000
 server.listen(3000, () => {
     console.log('Server is listening on http://localhost:3000');
+});
+*/
+
+// THIS IS WHERE OUR CODE STARTS ------------
+
+const http = require('http');
+const fs = require('fs'); // this is to access the other files in this folder
+const path = require('path');
+
+http.createServer((req, res) => {
+    let filePath = '';
+
+    // routing
+    if (req.url === '/') {
+        filePath = path.join(__dirname, 'public', 'home.html');
+    } else if (req.url === '/menu') {
+        filePath = path.join(__dirname, 'public', 'menu.html');
+    } // add routing for all pages
+    else {
+        res.writeHead(404, {'content-type': 'text/html'});
+        res.end('<h1>404 Error! This page is not on the menu sadly.</h1>');
+        return;
+    }
+
+    fs.readFile(filePath, (err, content) => {
+        if (err) {
+            res.writeHead(500);
+            res.end('Server Error');
+        } else {
+            res.writeHead(200, {'content-type': 'text/html'});
+            res.end(content);
+        }
+    });
+
+}).listen(8080, () => {
+    console.log('Server is running at http://localhost:8080');
 });
