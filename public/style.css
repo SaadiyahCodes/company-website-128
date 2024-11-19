@@ -4,10 +4,20 @@
   
   /* Set a background color */
   body {
-    background-color: #474e5d;
+    background-color: lightcyan;
     font-family: Helvetica, sans-serif;
   }
-  
+
+/*HEADER*/
+.header {
+    background-color: white;
+    height: 100px;
+    width: 100%;
+}
+
+
+
+  /*TIMELINE*/
   /* The actual timeline (the vertical ruler) */
   .timeline {
     position: relative;
@@ -132,3 +142,9 @@
       left: 0%;
     }
   }
+
+
+
+
+
+  
