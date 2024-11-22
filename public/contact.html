@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact Us</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="about.html" target="_blank"><b>Home</b></a></li>
+                    <li><a href="menu.html" target="_blank"><b>Menu</b></a></li>
+                    <li><a href="order.html" target="_blank"><b>Order</b></a></li>
+                    <li><a href="contact.html" target="_blank"><b>Contact Us</b></a></li>
+                </ul>
+            </nav>
+            <h2>Contact Us</h2>
+        </header>
+        <section class="contact">
+            
+            <!-- CONTACT FORM -->
+
+            <form action="mailto:testwin211@gmail.com" method="post" enctype="text/plain">
+                <label for="name">Full Name:</label>
+                <input type="text" name="name" required><br><br>
+
+                <label for="email">Email:</label>
+                <input type="text" name="email" required><br><br>
+
+                <label for="subject">Subject:</label>
+                <input type="text" name="subject" required><br><br>
+
+                <label for="message">Message:</label>
+                <textarea id="msgbox" name="msgbox" required></textarea><br><br>
+
+                <label for="msg-type">Type of Message:</label><br>
+                <input type="radio" name="msg-type" value="General">General
+                <input type="radio" name="msg-type" value="Feedback">Feedback
+                <input type="radio" name="msg-type" value="Question">Question
+
+                <br><br>
+                <!-- button for submission -->
+                <input id="submitbtn" type="submit" value="Send Message">
+            </form>
+        </section>
+        
+    </body>
+</html>
