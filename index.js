@@ -68,6 +68,9 @@ http.createServer((req, res) => {
         filePath = path.join(__dirname, 'public', 'order.html');
     } else if (req.url === '/contact') {
         filePath = path.join(__dirname, 'public', 'contact.html');
+    } else if (req.url === '/styles.css') {
+        filePath = path.join(__dirname, 'public', 'styles.css');
+        contentType = 'text/css'; 
     } else {
         // Handle 404 Not Found
         res.writeHead(404, {'content-type': 'text/html'});
