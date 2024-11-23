@@ -126,8 +126,6 @@ http.createServer((req, res) => {
             contentType = 'image/png';
         } else if (ext === '.jpg' || ext === '.jpeg') {
             contentType = 'image/jpeg';
-        } else if (ext === '.gif') {
-            contentType = 'image/gif';
         } else {
             res.writeHead(404, { 'Content-Type': 'text/html' });
             res.end('<h1>404 Error! Image not found.</h1>');
