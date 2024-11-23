@@ -25,7 +25,180 @@
                 <li><a href="/contact"><b>Contact Us</b></a></li>
             </ul>
         </nav>
-        <h1>Welcome to Menu</h1>
+        <h1>Explore our Menu</h1>
     </header>
+
+    <main>
+        <div class="deals-box">
+            <h2>Limited Deals</h2>
+            <p>Don't miss out on our best deals! 40% off on all pizzas below!!! Order now!</p>
+            <p style="font-size: 12px;">Note: This exclusive deal is available for members only. Orders must be placed via phone.</p>
+            <!--Display the different pizzas with picture, and deals and stuff-->
+            <!--AND-->
+
+            <!--Give an order option with selecting dropdowns-->
+            <!--OR-->
+            <!--Next to the display pic, keep selectable radio buttons-->
+            <!--Next to the radio, we have dropdown for pizza sizes etc-->
+
+            <!--AND-->
+            <!--Then give add-ons (Maybe like a checkerbox?)-->
+            <!--The page shd automatically calculate total cost-->
+            <!--Display total cost + Shipping (constant)-->
+            <!--Payment details (COD) and delivery location-->
+
+            <!-- <div class="pizza-pics"> 
+                <img src='/images/pizza1.jpg' alt="pizza1" style="width: 240px; height: 160px;">
+                <img src='/images/pizza2.jpg' alt="pizza2" style="width: 240px; height: 160px;">
+                <img src='/images/pizza3.jpg' alt="pizza3" style="width: 240px; height: 160px;">
+                <img src='/images/pizza4.jpg' alt="pizza4" style="width: 240px; height: 160px;">
+                <img src='/images/pizza5.jpg' alt="pizza5" style="width: 240px; height: 160px;">
+                <img src='/images/pizza6.jpg' alt="pizza6" style="width: 240px; height: 160px;">
+            </div> -->
+
+            <!--make flipcard for each img with description for special offer 'on call only' -->
+            <!--40% off on all these pizzas - for members only - on call only-->
+
+            <div class="pizza-pics">
+
+                <!-- Pepperoni -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="/images/pizza1.jpg" alt="Pepperoni" style="width: 240px; height:160px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h4>Pepperoni</h4>
+                            <p>Loaded with spicy pepperoni.</p>
+                            <p>$7.99</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chicken Fajita -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="/images/pizza2.jpg" alt="Chicken Fajita" style="width:240px; height:160px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h4>Chicken Fajita</h4>
+                            <p>Grilled chicken with fajita spices.</p>
+                            <p>$8.99</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BBQ Chicken -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="/images/pizza3.jpg" alt="BBQ Chicken" style="width:240px; height:160px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h4>BBQ Chicken</h4>
+                            <p>Sweet and tangy BBQ sauce with chicken.</p>
+                            <p>$8.99</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Veggie Delight -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="/images/pizza4.jpg" alt="Veggie Delight" style="width:240px; height:160px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h4>Veggie Delight</h4>
+                            <p>Fresh veggies on a crispy crust.</p>
+                            <p>$7.99</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mushroom pizza -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="/images/pizza6.jpg" alt="Mushroom" style="width:240px; height:160px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h4>Mushroom</h4>
+                            <p>Pan crust pizza topped with juicy mushrooms.</p>
+                            <p>$6.99</p>
+                        </div>
+                    </div>
+                </div>
+            
+            
+                <!-- 3 Pizza Deal -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="/images/pizza5.jpg" alt="3PizzaDeal" style="width:240px; height:160px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h4>3 Pizzas Deal</h4>
+                            <p>Order any 3 pizzas and get 50% off!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="order-online">
+            <h2>Online Order</h2>
+            <p>Click on your favorite pizza, select preferred add-ons, and checkout! - Voila!</p>
+            <p>Your pizza will be delivered within 1 hour of placing your order!</p>
+        
+            <!-- Dropdown for pizzas -->
+            <label for="pizza">Choose a Pizza:</label>
+            <select id="pizza" name="pizza">
+                <!-- Pizza options will be loaded dynamically -->
+            </select>
+        
+            <br><br>
+        
+            <!-- Add-ons (checkboxes) -->
+            <label><input type="checkbox" id="cheese" name="add-ons" value="extra_cheese"> Extra Cheese ($2.00)</label><br>
+            <label><input type="checkbox" id="garlic" name="add-ons" value="garlic_bread"> Garlic Bread ($1.50)</label><br>
+            <label><input type="checkbox" id="pepper" name="add-ons" value="extra_pepper"> Extra Pepper ($1.00)</label><br>
+            <label><input type="checkbox" id="olives" name="add-ons" value="olives"> Olives ($1.50)</label><br>
+        
+            <br><br>
+        
+            <!-- Delivery info -->
+            <h3>Delivery Information</h3>
+            <label for="address">Delivery Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your delivery address"><br>
+        
+            <br><br>
+        
+            <!-- Total and checkout -->
+            <div id="total-box">
+                <p>Total: $<span id="total-price">0.00</span></p>
+                <p>Shipping Fee: $5.00</p>
+                <p><strong>Cash on Delivery</strong></p>
+                <button id="place-order">Place Order</button>
+            </div>
+        </div>
+        
+        <script src="/order.js"></script>
+        
+
+    </main>
+
+
 </body>
 </html>
+
+
+<!--
+drop down of all listed pizzas from the json file, (dynamic retrieval)
+then there should be a checkbox for add ons (like I mentioned the cost of everything should be dynamically calculated)
+then there should be information input form form placing the order, including delivery address
+there is a fixed shipping cost, which should be added to the total, and the total should be printed down
+then there should be a line thta says we only do cash on delivery
+-->
