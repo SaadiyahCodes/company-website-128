@@ -96,7 +96,7 @@ server.listen(3000, () => {
 
 
 
-// New code for Static files like images
+// New code for Images folder
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -119,12 +119,23 @@ http.createServer((req, res) => {
     } else if (req.url === '/styles.css') {
         filePath = path.join(__dirname, 'public', 'styles.css');
         contentType = 'text/css';
-    } else if (req.url === '/logo.png') { // Add support for logo.png
-        filePath = path.join(__dirname, 'public', 'logo.png');
-        contentType = 'image/png'; // MIME type for PNG images
+    } else if (req.url.startsWith('/images/')) {
+        filePath = path.join(__dirname, 'public', req.url); // Dynamically serve any file in the images folder
+        const ext = path.extname(filePath);
+        if (ext === '.png') {
+            contentType = 'image/png';
+        } else if (ext === '.jpg' || ext === '.jpeg') {
+            contentType = 'image/jpeg';
+        } else if (ext === '.gif') {
+            contentType = 'image/gif';
+        } else {
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            res.end('<h1>404 Error! Image not found.</h1>');
+            return;
+        }
     } else {
         // Handle 404 Not Found
-        res.writeHead(404, {'content-type': 'text/html'});
+        res.writeHead(404, { 'Content-Type': 'text/html' });
         res.end('<h1>404 Error! This page is not on the menu sadly.</h1>');
         return;
     }
@@ -135,12 +146,12 @@ http.createServer((req, res) => {
             res.writeHead(500);
             res.end('Server Error');
         } else {
-            res.writeHead(200, {'content-type': contentType});
+            res.writeHead(200, { 'Content-Type': contentType });
             res.end(content);
         }
     });
-
 }).listen(8080, () => {
     console.log('Server is running at http://localhost:8080');
 });
+
 
