@@ -55,25 +55,33 @@ const path = require('path');
 
 http.createServer((req, res) => {
     let filePath = '';
+    let contentType = 'text/html'; // Default content type for HTML files
 
-    // routing
+    // Routing logic
     if (req.url === '/') {
         filePath = path.join(__dirname, 'public', 'home.html');
+    } else if (req.url === '/about') {
+        filePath = path.join(__dirname, 'public', 'about.html'); // Corrected to point to about.html
     } else if (req.url === '/menu') {
         filePath = path.join(__dirname, 'public', 'menu.html');
-    } // add routing for all pages
-    else {
+    } else if (req.url === '/order') {
+        filePath = path.join(__dirname, 'public', 'order.html');
+    } else if (req.url === '/contact') {
+        filePath = path.join(__dirname, 'public', 'contact.html');
+    } else {
+        // Handle 404 Not Found
         res.writeHead(404, {'content-type': 'text/html'});
         res.end('<h1>404 Error! This page is not on the menu sadly.</h1>');
         return;
     }
 
+    // Serve the file
     fs.readFile(filePath, (err, content) => {
         if (err) {
             res.writeHead(500);
             res.end('Server Error');
         } else {
-            res.writeHead(200, {'content-type': 'text/html'});
+            res.writeHead(200, {'content-type': contentType});
             res.end(content);
         }
     });
