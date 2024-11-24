@@ -131,6 +131,9 @@ http.createServer((req, res) => {
             res.end('<h1>404 Error! Image not found.</h1>');
             return;
         }
+    } else if (req.url === '/timeline.json') {
+        filePath = path.join(__dirname, 'timeline.json');
+        contentType = 'application/json';
     } else if (req.url === '/save-feedback' && req.method === 'POST') {
         // Route to handle feedback submission
         let body = '';
