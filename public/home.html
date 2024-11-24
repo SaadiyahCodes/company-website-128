@@ -26,6 +26,47 @@
             font-weight: 500;
         }
 
+        /* Image Gallery Styles */
+        .slider-container {
+        position: relative;
+        max-width: 1000px;
+        margin: 20px auto;
+        overflow: hidden;
+        }
+
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+
+        .scroll-container img {
+            padding: 10px;
+            height: 200px;
+            width: auto;
+        }
+
         /* Awards Section */
         .awards {
             margin: 30px;
@@ -38,11 +79,46 @@
             text-align: center;
         }
 
-        .awards img {
-            display: block;
-            margin: 10px auto;
+        .awards-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .award-item {
+            text-align: center;
+        }
+
+        .award-item img {
             width: 150px;
             height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* Timeline Table Styles */
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+
+        th {
+            background-color: rgba(68, 102, 138, 255);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
         }
     </style>
 </head>
@@ -67,37 +143,97 @@
     <h1>Welcome to Dubai Pizzeria!</h1>
     <h3>Where tradition meets taste</h3>
 
-    <!-- Rotating Banner for Special Offers -->
     <div class="banner">
         Special Offer: Get 20% off your first order!
     </div>
 
-    <!-- Awards Section -->
-    <div class="awards">
-        <h3>Awards and Recognition</h3>
-        <img src="/images/award.png" alt="Award">
-        <p>Recipient of the Culinary Excellence Award (2021)</p>
-        <p>Best Pizza in Dubai, 2021</p>
+    <!-- Image Gallery -->
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide active">
+                <img src="/images/gallery1.jpg" alt="Pizza Gallery 1">
+            </div>
+            <div class="slide">
+                <img src="/images/gallery2.jpg" alt="Pizza Gallery 2">
+            </div>
+            <div class="slide">
+                <img src="/images/gallery3.jpg" alt="Pizza Gallery 3">
+            </div>
+            <div class="slide">
+                <img src="/images/gallery4.jpg" alt="Pizza Gallery 4">
+            </div>
+        </div>
     </div>
-
+    
+    <!-- Progress Timeline -->
+    <br><br>
+    <h3>Our Progress</h3>
     <table>
         <tr>
             <th>Year</th>
             <th>Progress</th>
         </tr>
-        <tr>
-            <td>1994</td>
-            <td>Opened our first pizzeria</td>
-        </tr>
-        <tr>
-            <td>2005</td>
-            <td>Became one of the biggest chains in GCC</td>
-        </tr>
-        <tr>
-            <td>2021</td>
-            <td>Won the prestigious World Culinary Award</td>
-        </tr>
+        <!--will be populated dynamically from timeline.json-->
     </table>
+
+    <!-- Awards -->
+    <br>
+    <div class="awards">
+        <h3>Awards and Recognition</h3>
+        <div class="awards-container">
+            <div class="award-item">
+                <img src="/images/award.png" alt="Culinary Excellence Award">
+                <p>Culinary Excellence Award (2021)</p>
+                <p>Best Pizza in Dubai, 2021</p>
+            </div>
+            <div class="award-item">
+                <img src="/images/award2.jpg" alt="Diner's Choice Award">
+                <p>Diner's Choice Award 2023</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        /*GALLERY*/
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) {
+                currentSlide = 0;
+            } else {
+                currentSlide = index;
+            }
+
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Change slides every 3 seconds
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 3000);
+
+        /*TIMELINE*/
+        fetch('/timeline.json')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.querySelector('table');
+            const rows = data.map(item => `
+                <tr>
+                    <td>${item.year}</td>
+                    <td>${item.progress}</td>
+                </tr>
+            `).join('');
+            // Insert after the header row
+            tableBody.insertAdjacentHTML('beforeend', rows);
+        })
+        .catch(error=> console.error('Error fetching timeline.json:', error));
+    </script>
 </body>
 </html>
-
