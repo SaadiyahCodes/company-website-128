@@ -4,15 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dubai Pizzeria</title>
-    <!-- Link to external CSS -->
     <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: white;
+        }
+
+        h1, h3 {
+            font-family: "Libre Caslon Text", serif;
+            font-weight: 700;
+            text-align: center;
+            color: rgba(68, 102, 138, 255); /* Blue for headers */
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(68, 102, 138, 255);
+            color: white;
+        }
+
+        header img {
+            height: 100px;
+        }
+
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 18px;
+            color: white; /* White text color */
+            padding: 8px 12px; /* Add padding for hover box effect */
+        }
+
+        /* Hover Effect for Navigation */
+        nav ul li a:hover {
+            border-radius: 10px;
+            background-color: rgb(0, 0, 0);
+        }
+
+        /* Welcome Section */
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .banner {
+            margin: 30px 0;
+            text-align: center;
+            background-color: yellow;
+            color: rgba(68, 102, 138, 255);
+            padding: 10px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        /* Awards Section */
+        .awards {
+            margin: 30px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border: 2px solid #ddd;
+        }
+
+        .awards h3 {
+            text-align: center;
+        }
+
+        .awards img {
+            display: block;
+            margin: 10px auto;
+            width: 150px;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="header" style="display: flex;">
-            <img src='/images/logo.png' alt="logo" style="height: 100px;">
-            <p>Dubai Pizzeria</p>
-            <p>Where tradition meets taste</p>
+        <img src='/images/logo.png' alt="logo">
+        <div>
+            <h2>Dubai Pizzeria</h2>
         </div>
 
         <nav>
@@ -24,15 +111,42 @@
                 <li><a href="/contact"><b>Contact Us</b></a></li>
             </ul>
         </nav>
-        <h1>Welcome to Dubai Pizzeria!</h1>
-        <p>Where tradition meets taste</p>
     </header>
 
+    <h1>Welcome to Dubai Pizzeria!</h1>
+    <h3>Where tradition meets taste</h3>
 
-    <main>
-        <h2>Recipient of the Culinary Excellence Award (2015)</h2>
-        <p>Bringing our very own secret recipe inspired by the roots of Italian taste.</p>
-        <!--We can add a background picture and put this text in the middle of the page-->
-    </main>
+    <!-- Rotating Banner for Special Offers -->
+    <div class="banner">
+        Special Offer: Get 20% off your first order!
+    </div>
+
+    <!-- Awards Section -->
+    <div class="awards">
+        <h3>Awards and Recognition</h3>
+        <img src="/images/award.png" alt="Award">
+        <p>Recipient of the Culinary Excellence Award (2021)</p>
+        <p>Best Pizza in Dubai, 2021</p>
+    </div>
+
+    <table>
+        <tr>
+            <th>Year</th>
+            <th>Progress</th>
+        </tr>
+        <tr>
+            <td>1994</td>
+            <td>Opened our first pizzeria</td>
+        </tr>
+        <tr>
+            <td>2005</td>
+            <td>Became one of the biggest chains in GCC</td>
+        </tr>
+        <tr>
+            <td>2021</td>
+            <td>Won the prestigious World Culinary Award</td>
+        </tr>
+    </table>
 </body>
 </html>
+
