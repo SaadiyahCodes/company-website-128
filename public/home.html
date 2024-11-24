@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dubai Pizzeria</title>
     <link rel="stylesheet" href="/styles.css">
+    <!-- FONT IMPORT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- ICONS IMPORT -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
         /* Welcome Section */
@@ -68,11 +71,15 @@
         }
 
         /* Awards Section */
+        .awards, table {
+            width: 80%;
+            margin: 30px auto;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
         .awards {
-            margin: 30px;
             padding: 20px;
-            background-color: #f8f8f8;
-            border: 2px solid #ddd;
+            border: none;
         }
 
         .awards h3 {
@@ -84,6 +91,7 @@
             justify-content: center;
             gap: 40px;
             margin-top: 20px;
+            padding: 15px;
         }
 
         .award-item {
@@ -102,7 +110,6 @@
             margin: 30px auto;
             border-collapse: collapse;
             background-color: #fff;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
         th, td {
@@ -119,6 +126,38 @@
 
         tr:hover {
             background-color: #f5f5f5;
+        }
+
+        /*FOOTER*/
+
+        footer {
+            background-color: rgba(68, 102, 138, 255);
+            color: white;
+            padding: 0px;
+            margin-top: 60px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: yellow;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 10px;
         }
     </style>
 </head>
@@ -235,5 +274,33 @@
         })
         .catch(error=> console.error('Error fetching timeline.json:', error));
     </script>
+
+    <footer>
+        <div class="footer-section">
+            <h4>Links</h4>
+            <ul class="footer-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/menu">Menu</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <p>📍 Al Barsha, Dubai, UAE</p>
+            <p>📞 +971 4 XXX XXXX</p>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <p>&copy; 2024 Dubai Pizzeria</p>
+    </footer>
 </body>
 </html>
