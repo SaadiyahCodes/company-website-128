@@ -7,18 +7,19 @@
 
 
     <style>
-        /*
         .rate-container {
-            direction: ltr;
-            display: inline-block;
-            overflow: hidden;
-            width: 100%;
+            display: flex;
+            flex-direction: row;
+            height: 50px;
+            margin: 20px 0;
         }
+
         .rate {
-            display: inline-block;
-            height: 46px;
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 5px;
             padding: 0 10px;
-            margin-bottom: 20px;
+            height: 50px;
         }
 
         .rate:not(:checked) > input {
@@ -27,21 +28,18 @@
         }
 
         .rate:not(:checked) > label {
-            float: right;
-            width: 1em;
-            margin-right: 5px;
-            overflow: hidden;
-            white-space: nowrap;
             cursor: pointer;
             font-size: 30px;
             color: #ccc;
-            direction: ltr;
+            user-select: none;
         }
 
         .rate:not(:checked) > label:before {
             content: 'star_border';
             font-family: 'Material Icons';
             font-weight: normal;
+            width: 30px;
+            height: 30px;
         }
 
         .rate > input:checked ~ label:before {
@@ -58,8 +56,7 @@
         .rate:not(:checked) > label:hover ~ label:before {
             content: 'star';
             color: #deb217;
-        }*/
-        /* rating works but shifts page up top so its commented for now*/
+        }
     </style>
 </head>
 <body>
@@ -84,6 +81,34 @@
         <h2>Contact Us</h2>
     </header>
 
+    <section class="feedback">
+        <form id="feedbackForm">
+            <label for="feedback-name">Name:</label>
+            <input type="text" id="feedback-name" name="name" required><br><br>
+    
+            <label for="rating">Rating:</label><br>
+            <div class="rate-container">
+                <div class="rate">
+                    <input type="radio" id="star5" name="rating" value="5" />
+                    <label for="star5" title="5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value="4" />
+                    <label for="star4" title="4 stars"></label>
+                    <input type="radio" id="star3" name="rating" value="3" />
+                    <label for="star3" title="3 stars"></label>
+                    <input type="radio" id="star2" name="rating" value="2" />
+                    <label for="star2" title="2 stars"></label>
+                    <input type="radio" id="star1" name="rating" value="1" />
+                    <label for="star1" title="1 star"></label>
+                </div>
+            </div>
+    
+            <label for="feedback">Your Feedback:</label>
+            <textarea name="comment" id="feedback" placeholder="Write your feedback here..." required></textarea><br><br>
+            
+            <input id="submitbtn" type="submit" value="Send Feedback">
+        </form>
+    </section>
+
     <section class="contact">
         <form action="mailto:dxbpizzeria128@gmail.com" method="post" enctype="text/plain">
             <label for="name">Full Name:</label>
@@ -95,44 +120,48 @@
             <label for="subject">Subject:</label>
             <input type="text" name="subject" required><br><br>
 
-            <label for="msg-type">Type of Message:</label><br>
-            <input type="radio" name="msg-type" value="General"> General
-            <input type="radio" name="msg-type" value="Feedback"> Feedback
-            <input type="radio" name="msg-type" value="Question"> Question
-            <br><br>
-
             <label for="message">Message:</label>
-            <textarea id="msgbox" name="msgbox" required></textarea><br><br>
+            <textarea id="msgbox" name="msgbox" placeholder="enter your message..." required></textarea><br><br>
 
             <input id="submitbtn" type="submit" value="Send Message">
         </form>
     </section>
 
-    <section class="feedback">
-        <form>
-            <label for="feedback">We'd love to hear your feedback!</label><br><br>
+    <script>
+        const feedbackForm = document.getElementById('feedbackForm'); // Ensure this targets the right form
+        feedbackForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+    
+            // get form data
+            const formData = {
+                name: document.getElementById('feedback-name').value,
+                rating: document.querySelector('input[name="rating"]:checked')?.value || '0',
+                comment: document.getElementById('feedback').value,
+                date: new Date().toISOString()
+            };
+    
+            try {
+                const response = await fetch('/save-feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+    
+                if (response.ok) {
+                    const result = await response.json();
+                    alert(result.message);
+                    e.target.reset();
+                } else {
+                    alert('Failed to save feedback. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while saving feedback.');
+            }
+        });
+    </script>    
 
-            <!-- RATING--><!--
-            <div class="rate-container">
-                <div class="rate">
-                    <input type="radio" id="star5" name="rate" value="5" />
-                    <label for="star5" title="5 stars">5 stars</label>
-                    <input type="radio" id="star4" name="rate" value="4" />
-                    <label for="star4" title="4 stars">4 stars</label>
-                    <input type="radio" id="star3" name="rate" value="3" />
-                    <label for="star3" title="3 stars">3 stars</label>
-                    <input type="radio" id="star2" name="rate" value="2" />
-                    <label for="star2" title="2 stars">2 stars</label>
-                    <input type="radio" id="star1" name="rate" value="1" />
-                    <label for="star1" title="1 star">1 star</label>
-                </div>
-            </div>  -->         
-
-            <!--FEEDBACK TEXTAREA-->
-            <textarea name="feedback" id="feedback" placeholder="Write your feedback here..."></textarea><br><br>
-            
-            <input id="submitbtn" type="submit" value="Send Feedback">
-        </form>
-    </section>
 </body>
 </html>
