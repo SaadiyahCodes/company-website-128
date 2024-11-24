@@ -1,65 +1,138 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Contact Us</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <header>
-            <div class="header" style="display: flex;">
-                <img src='/images/logo.png' alt="logo" style="height: 100px;">
+<head>
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <style>
+        /*
+        .rate-container {
+            direction: ltr;
+            display: inline-block;
+            overflow: hidden;
+            width: 100%;
+        }
+        .rate {
+            display: inline-block;
+            height: 46px;
+            padding: 0 10px;
+            margin-bottom: 20px;
+        }
+
+        .rate:not(:checked) > input {
+            position: absolute;
+            top: -9999px;
+        }
+
+        .rate:not(:checked) > label {
+            float: right;
+            width: 1em;
+            margin-right: 5px;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ccc;
+            direction: ltr;
+        }
+
+        .rate:not(:checked) > label:before {
+            content: 'star_border';
+            font-family: 'Material Icons';
+            font-weight: normal;
+        }
+
+        .rate > input:checked ~ label:before {
+            content: 'star';
+            color: #ffc700;
+        }
+
+        .rate > input:checked + label:before {
+            content: 'star';
+            color: #ffc700;
+        }
+
+        .rate:not(:checked) > label:hover:before,
+        .rate:not(:checked) > label:hover ~ label:before {
+            content: 'star';
+            color: #deb217;
+        }*/
+        /* rating works but shifts page up top so its commented for now*/
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header" style="display: flex;">
+            <img src="/images/logo.png" alt="logo" style="height: 100px;">
+            <div>
                 <p>Dubai Pizzeria</p>
                 <p>Where tradition meets taste</p>
             </div>
+        </div>
 
-            <nav>
-                <ul>
-                    <li><a href="/"><b>Home</b></a></li>
-                    <li><a href="/about"><b>About</b></a></li>
-                    <li><a href="/menu"><b>Menu</b></a></li>
-                    <li><a href="/order"><b>Order</b></a></li>
-                    <li><a href="/contact"><b>Contact Us</b></a></li>
-                </ul>
-            </nav>
-            <h2>Contact Us</h2>
-        </header>
-        <section class="contact">
+        <nav>
+            <ul>
+                <li><a href="/"><b>Home</b></a></li>
+                <li><a href="/about"><b>About</b></a></li>
+                <li><a href="/menu"><b>Menu</b></a></li>
+                <li><a href="/order"><b>Order</b></a></li>
+                <li><a href="/contact"><b>Contact Us</b></a></li>
+            </ul>
+        </nav>
+        <h2>Contact Us</h2>
+    </header>
+
+    <section class="contact">
+        <form action="mailto:dxbpizzeria128@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Full Name:</label>
+            <input type="text" name="name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="text" name="email" required><br><br>
+
+            <label for="subject">Subject:</label>
+            <input type="text" name="subject" required><br><br>
+
+            <label for="msg-type">Type of Message:</label><br>
+            <input type="radio" name="msg-type" value="General"> General
+            <input type="radio" name="msg-type" value="Feedback"> Feedback
+            <input type="radio" name="msg-type" value="Question"> Question
+            <br><br>
+
+            <label for="message">Message:</label>
+            <textarea id="msgbox" name="msgbox" required></textarea><br><br>
+
+            <input id="submitbtn" type="submit" value="Send Message">
+        </form>
+    </section>
+
+    <section class="feedback">
+        <form>
+            <label for="feedback">We'd love to hear your feedback!</label><br><br>
+
+            <!-- RATING--><!--
+            <div class="rate-container">
+                <div class="rate">
+                    <input type="radio" id="star5" name="rate" value="5" />
+                    <label for="star5" title="5 stars">5 stars</label>
+                    <input type="radio" id="star4" name="rate" value="4" />
+                    <label for="star4" title="4 stars">4 stars</label>
+                    <input type="radio" id="star3" name="rate" value="3" />
+                    <label for="star3" title="3 stars">3 stars</label>
+                    <input type="radio" id="star2" name="rate" value="2" />
+                    <label for="star2" title="2 stars">2 stars</label>
+                    <input type="radio" id="star1" name="rate" value="1" />
+                    <label for="star1" title="1 star">1 star</label>
+                </div>
+            </div>  -->         
+
+            <!--FEEDBACK TEXTAREA-->
+            <textarea name="feedback" id="feedback" placeholder="Write your feedback here..."></textarea><br><br>
             
-            <!-- CONTACT FORM -->
-
-            <form action="mailto:testwin211@gmail.com" method="post" enctype="text/plain">
-                <label for="name">Full Name:</label>
-                <input type="text" name="name" required><br><br>
-
-                <label for="email">Email:</label>
-                <input type="text" name="email" required><br><br>
-
-                <label for="subject">Subject:</label>
-                <input type="text" name="subject" required><br><br>
-
-                <label for="message">Message:</label>
-                <textarea id="msgbox" name="msgbox" required></textarea><br><br>
-
-                <label for="msg-type">Type of Message:</label><br>
-                <input type="radio" name="msg-type" value="General">General
-                <input type="radio" name="msg-type" value="Feedback">Feedback
-                <input type="radio" name="msg-type" value="Question">Question
-
-                <br><br>
-                <!-- button for submission -->
-                <input id="submitbtn" type="submit" value="Send Message">
-            </form>
-        </section>
-        <section class="feedback">
-            <form>
-                <label for="feedback">We'd love to hear your feedback!</label>
-                <!--RATING CSS (check references)-->
-
-                <textarea name="feedback" id="feedback"></textarea>
-                
-                <input id="submitbtn" type="submit" value="Send Feedback">
-            </form>
-        </section>
-        
-    </body>
+            <input id="submitbtn" type="submit" value="Send Feedback">
+        </form>
+    </section>
+</body>
 </html>
