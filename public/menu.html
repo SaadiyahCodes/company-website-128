@@ -175,21 +175,121 @@
         
             <!-- Delivery info -->
             <h3>Delivery Information</h3>
-            <label for="address">Delivery Address:</label>
-            <input type="text" id="address" name="address" placeholder="Enter your delivery address"><br>
+
+            <form id="order-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name"><br>
+
+                <label for="contact">Contact:</label>
+                <input type="number" id="contact" name="contact" placeholder="Enter your contact number"><br>
+
+                <label for="address">Delivery Address:</label>
+                <input type="text" id="address" name="address" placeholder="Enter your delivery address"><br>
+
         
             <br><br>
         
             <!-- Total and checkout -->
             <div id="total-box">
-                <p>Total: $<span id="total-price">0.00</span></p>
                 <p>Shipping Fee: $5.00</p>
+                <p>Total: $<span id="total-price">0.00</span></p>
                 <p><strong>We accept Cash on Delivery only</strong></p>
-                <button id="place-order">Place Order</button>
+                <button type="submit" id="place-order">Place Order</button>
             </div>
         </div>
+    </form>
+
+        <script>
+            let pizzaPrice = 0;
+            
+            // Fetch pizzas from pizzas.json and populate the dropdown
+            fetch('/pizzas.json')
+                .then(response => response.json())
+                .then(data => {
+                    const pizzaSelect = document.querySelector('#pizza');
+                    
+                    // Map through the data and create option elements
+                    const options = data.map(pizza => {
+                        return `<option value="${pizza.value}" data-price="${pizza.price}">${pizza.label} - $${pizza.price.toFixed(2)}</option>`;
+                    }).join('');
+                    
+                    // Insert options into the select element
+                    pizzaSelect.innerHTML = options;
         
-        <script src="order.js"></script>
+                    // Set initial pizza price to the price of the first pizza in the list
+                    pizzaPrice = parseFloat(pizzaSelect.options[0].getAttribute('data-price'));
+        
+                    // Update the total cost on page load
+                    updateTotal();
+                })
+                .catch(error => console.error('Error fetching pizzas.json:', error));
+        
+            // Function to update the total cost
+            function updateTotal() {
+                const shippingFee = 5.00;
+                let addOnsCost = 0;
+        
+                // Get the selected pizza price
+                const selectedPizza = document.querySelector('#pizza');
+                pizzaPrice = parseFloat(selectedPizza.options[selectedPizza.selectedIndex].getAttribute('data-price'));
+        
+                // Add cost for selected add-ons
+                if (document.querySelector('#cheese').checked) addOnsCost += 2.00;
+                if (document.querySelector('#garlic').checked) addOnsCost += 1.50;
+                if (document.querySelector('#pepper').checked) addOnsCost += 1.00;
+                if (document.querySelector('#olives').checked) addOnsCost += 1.50;
+        
+                // Calculate the total price
+                const totalPrice = pizzaPrice + addOnsCost + shippingFee;
+        
+                // Update the total price displayed on the page
+                document.querySelector('#total-price').textContent = totalPrice.toFixed(2);
+            }
+        
+            // Event listeners to update the total when the pizza or add-ons change
+            document.querySelector('#pizza').addEventListener('change', updateTotal);
+            document.querySelectorAll('input[name="add-ons"]').forEach(addon => {
+                addon.addEventListener('change', updateTotal);
+            });
+        
+            // Order form submission functionality
+            const orderForm = document.getElementById('order-form'); // Target the order form
+            orderForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); // Prevent the default form submission
+
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value, // Name input
+                    contact: document.getElementById('contact').value, // Contact number input
+                    address: document.getElementById('address').value, // Delivery address input
+                    totalPrice: document.getElementById('total-price').innerText, // Total price (calculated dynamically)
+                    date: new Date().toISOString() // Current date and time for the order
+                };
+
+                try {
+                    // Send the data as a POST request to the server
+                    const response = await fetch('/save-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData), // Send the form data as JSON
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        alert(result.message); // Show a success message
+                        e.target.reset(); // Reset the form after successful submission
+                    } else {
+                        alert('Failed to save order. Please try again.'); // Error message
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while saving your order.');
+                }
+            });
+       </script>
+
         
 
     </main>

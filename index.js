@@ -80,7 +80,50 @@ http.createServer((req, res) => {
         });
         return;
 
-    } else {
+    }
+
+    else if (req.url === '/save-order' && req.method === 'POST') {
+        // Route to handle order submission
+        let body = '';
+
+        // Collect data from POST request
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+
+        req.on('end', () => {
+            const orderPath = path.join(__dirname, 'orders.json');
+            const newOrder = JSON.parse(body); // Parse the incoming order data
+
+            // Read existing order data
+            fs.readFile(orderPath, 'utf-8', (err, data) => {
+                if (err && err.code !== 'ENOENT') {
+                    res.writeHead(500, { 'Content-Type': 'text/plain' });
+                    res.end('Error reading order data.');
+                    return;
+                }
+
+                // If file exists, parse existing orders; otherwise, create a new array
+                const ordersArray = data ? JSON.parse(data) : [];
+                ordersArray.push(newOrder); // Add new order to the array
+
+                // Save updated orders to the file
+                fs.writeFile(orderPath, JSON.stringify(ordersArray, null, 2), err => {
+                    if (err) {
+                        res.writeHead(500, { 'Content-Type': 'text/plain' });
+                        res.end('Error saving order.');
+                    } else {
+                        res.writeHead(200, { 'Content-Type': 'application/json' });
+                        res.end(JSON.stringify({ message: 'Order placed successfully.' }));
+                    }
+                });
+            });
+        });
+        return;
+    }
+    
+    
+    else {
         // Handle 404 Not Found
         res.writeHead(404, { 'Content-Type': 'text/html' });
         res.end('<h1>404 Error! This page is not on the menu sadly.</h1>');
