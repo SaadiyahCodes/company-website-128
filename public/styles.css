@@ -148,8 +148,54 @@
 /*MENU PAGE*/
 
 /*CONTACT PAGE*/
+form {
+  background-color: rgb(82, 183, 143);
+  color: aliceblue;
+  max-width: 400px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
 
+.contact form input[type="text"] {
+  margin-top: 8px;
+  padding: 8px;
+  text-align: left;
+  max-width: 350px;
+  width: 100%;
+}
 
+form textarea {
+  margin-top: 8px;
+  padding: 8px;
+  text-align: left;
+  max-width: 350px;
+  width: 100%;
+}
+
+.contact form input[type="radio"] {
+  margin: 8px 8px 0 15px;
+}
+
+#submitbtn {
+  padding: 5px;
+  border-radius: 6px;
+  background-color: aliceblue;
+}
+
+#submitbtn:hover {
+  background-color: rgb(230, 106, 78);
+}
+
+.contact {
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.feedback {
+  margin: 20px;
+}
 
   /*Flip card for pizzas*/
 
