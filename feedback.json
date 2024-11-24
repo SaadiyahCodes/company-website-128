@@ -10,5 +10,11 @@
     "rating": "5",
     "comment": "beautiful, i want to never eat pizza again!",
     "date": "2024-11-24T10:50:02.310Z"
+  },
+  {
+    "name": "Pingu",
+    "rating": "3",
+    "comment": "Pizza was good, I like it.",
+    "date": "2024-11-24T14:02:12.352Z"
   }
 ]

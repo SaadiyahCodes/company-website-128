@@ -8,11 +8,63 @@
     font-family: Helvetica, sans-serif;
   }
 
-/*HEADER*/
+/* HEADER
 .header {
     background-color: white;
     height: 100px;
     width: 100%;
+} */
+
+
+/*NAV-BAR*/
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+}
+
+h1, h3 {
+  font-family: "Libre Caslon Text", serif;
+  font-weight: 700;
+  text-align: center;
+  color: rgba(68, 102, 138, 255); /* Blue for headers */
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(68, 102, 138, 255);
+  color: white;
+}
+
+header img {
+  height: 100px;
+}
+
+/* Navigation */
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  color: white; /* White text color */
+  padding: 8px 12px; /* Add padding for hover box effect */
+}
+
+/* Hover Effect for Navigation */
+nav ul li a:hover {
+  border-radius: 10px;
+  background-color: rgb(0, 0, 0);
 }
 
 
