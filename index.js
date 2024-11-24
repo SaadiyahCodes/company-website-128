@@ -131,6 +131,44 @@ http.createServer((req, res) => {
             res.end('<h1>404 Error! Image not found.</h1>');
             return;
         }
+    } else if (req.url === '/save-feedback' && req.method === 'POST') {
+        // Route to handle feedback submission
+        let body = '';
+
+        // Collect data from POST request
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+
+        req.on('end', () => {
+            const feedbackPath = path.join(__dirname, 'feedback.json');
+            const newFeedback = JSON.parse(body);
+
+            // Read existing feedback data
+            fs.readFile(feedbackPath, 'utf-8', (err, data) => {
+                if (err && err.code !== 'ENOENT') {
+                    res.writeHead(500, { 'Content-Type': 'text/plain' });
+                    res.end('Error reading feedback data.');
+                    return;
+                }
+
+                const feedbackArray = data ? JSON.parse(data) : [];
+                feedbackArray.push(newFeedback);
+
+                // Save updated feedback to the file
+                fs.writeFile(feedbackPath, JSON.stringify(feedbackArray, null, 2), err => {
+                    if (err) {
+                        res.writeHead(500, { 'Content-Type': 'text/plain' });
+                        res.end('Error saving feedback.');
+                    } else {
+                        res.writeHead(200, { 'Content-Type': 'application/json' });
+                        res.end(JSON.stringify({ message: 'Feedback saved successfully.' }));
+                    }
+                });
+            });
+        });
+        return;
+
     } else {
         // Handle 404 Not Found
         res.writeHead(404, { 'Content-Type': 'text/html' });
