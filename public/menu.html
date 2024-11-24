@@ -31,7 +31,7 @@
         
     </header>
 
-    <main>
+    <main id="menu">
         <h1>Explore our Menu</h1>
         <div class="deals-box">
             <h2>Limited Deals</h2>
@@ -176,6 +176,7 @@
             <!-- Delivery info -->
             <h3>Delivery Information</h3>
 
+
             <form id="order-form">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name"><br>
@@ -187,17 +188,19 @@
                 <input type="text" id="address" name="address" placeholder="Enter your delivery address"><br>
 
         
-            <br><br>
+                <br><br>
         
-            <!-- Total and checkout -->
-            <div id="total-box">
-                <p>Shipping Fee: $5.00</p>
-                <p>Total: $<span id="total-price">0.00</span></p>
-                <p><strong>We accept Cash on Delivery only</strong></p>
-                <button type="submit" id="place-order">Place Order</button>
-            </div>
+                <!-- Total and checkout -->
+                <div id="total-box">
+                    <p>Shipping Fee: $5.00</p>
+                    <p>Total: $<span id="total-price">0.00</span></p>
+                    <p><strong>We accept Cash on Delivery only</strong></p>
+                    <button type="submit" id="place-order">Place Order</button>
+                </div>
+            </form>
+            
         </div>
-    </form>
+    
 
         <script>
             let pizzaPrice = 0;
