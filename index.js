@@ -23,6 +23,9 @@ http.createServer((req, res) => {
     } else if (req.url === '/pizzas.json') {
         filePath = path.join(__dirname, 'pizzas.json');
         contentType = 'application/json';
+    } else if (req.url === '/timeline.json') {
+        filePath = path.join(__dirname, 'timeline.json');
+        contentType = 'application/json';
     } else if (req.url.startsWith('/images/')) {
         filePath = path.join(__dirname, 'public', req.url); // Dynamically serve any file in the images folder
         const ext = path.extname(filePath);
