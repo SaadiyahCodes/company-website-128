@@ -119,6 +119,9 @@ http.createServer((req, res) => {
     } else if (req.url === '/styles.css') {
         filePath = path.join(__dirname, 'public', 'styles.css');
         contentType = 'text/css';
+    } else if (req.url === '/pizzas.json') {
+        filePath = path.join(__dirname, 'pizzas.json');
+        contentType = 'application/json';
     } else if (req.url.startsWith('/images/')) {
         filePath = path.join(__dirname, 'public', req.url); // Dynamically serve any file in the images folder
         const ext = path.extname(filePath);
@@ -131,6 +134,10 @@ http.createServer((req, res) => {
             res.end('<h1>404 Error! Image not found.</h1>');
             return;
         }
+
+    } else if (req.url.startsWith('/js/')) { // New route for serving JavaScript files
+        filePath = path.join(__dirname, 'public', req.url);
+        contentType = 'application/javascript';        
     } else if (req.url === '/save-feedback' && req.method === 'POST') {
         // Route to handle feedback submission
         let body = '';
