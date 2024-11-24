@@ -2,9 +2,10 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+//Creating a server
 http.createServer((req, res) => {
     let filePath = '';
-    let contentType = 'text/html'; // Default content type for HTML files
+    let contentType = 'text/html';
 
     // Routing logic
     if (req.url === '/') {
@@ -27,7 +28,7 @@ http.createServer((req, res) => {
         filePath = path.join(__dirname, 'timeline.json');
         contentType = 'application/json';
     } else if (req.url.startsWith('/images/')) {
-        filePath = path.join(__dirname, 'public', req.url); // Dynamically serve any file in the images folder
+        filePath = path.join(__dirname, 'public', req.url);
         const ext = path.extname(filePath);
         if (ext === '.png') {
             contentType = 'image/png';
@@ -39,11 +40,13 @@ http.createServer((req, res) => {
             return;
         }
 
-    } else if (req.url.startsWith('/js/')) { // New route for serving JavaScript files
+    } else if (req.url.startsWith('/js/')) { 
         filePath = path.join(__dirname, 'public', req.url);
-        contentType = 'application/javascript';        
-    } else if (req.url === '/save-feedback' && req.method === 'POST') {
+        contentType = 'application/javascript'; 
+        
         // Route to handle feedback submission
+    } else if (req.url === '/save-feedback' && req.method === 'POST') {
+        
         let body = '';
 
         // Collect data from POST request
@@ -83,7 +86,6 @@ http.createServer((req, res) => {
     }
 
     else if (req.url === '/save-order' && req.method === 'POST') {
-        // Route to handle order submission
         let body = '';
 
         // Collect data from POST request
@@ -124,7 +126,6 @@ http.createServer((req, res) => {
     
     
     else {
-        // Handle 404 Not Found
         res.writeHead(404, { 'Content-Type': 'text/html' });
         res.end('<h1>404 Error! This page is not on the menu sadly.</h1>');
         return;

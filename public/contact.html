@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
+        /* RATING */
         .rate-container {
             display: flex;
             flex-direction: row;
@@ -62,6 +63,122 @@
             content: 'star';
             color: #deb217;
         }
+
+        .main-heading {
+            text-align: center;
+            font-size: 2.5em;
+            margin: 40px 0;
+            font-family: 'Libre Caslon Text', serif;
+        }
+
+        /* FEEDBACK */
+        .feedback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .feedback form {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .feedback-image {
+            flex: 1;
+            max-width: 400px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .feedback-message {
+            text-align: center;
+            font-size: 1.5em;
+            margin: 30px 0;
+            color: #333;
+        }
+
+        /* LOCATION */
+
+        .locations-section {
+            padding: 40px 0;
+            margin: 40px 0;
+        }
+
+        .locations-heading {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .location-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .location-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .location-info {
+            padding: 20px;
+        }
+
+        .location-name {
+            font-size: 1.25em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .location-address, .location-phone {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        /* IMAGES */
+        .contact {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .contact form {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .contact-image {
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            order: -1;  /* This moves the image to the left */
+        }
+
+        
     </style>
 </head>
 <body>
@@ -80,6 +197,12 @@
             </ul>
         </nav>
     </header>
+
+
+    <h1 class="main-heading">Contact Us</h1>
+
+
+    <h3 class="feedback-message">We'd Love to Hear Your Feedback!</h3>
 
     <section class="feedback">
         <form id="feedbackForm">
@@ -107,9 +230,42 @@
             
             <input id="submitbtn" type="submit" value="Send Feedback">
         </form>
+        <img src="/images/people.jpg" alt="Delicious Pizza" class="feedback-image">
+    </section>
+
+
+    <section class="locations-section">
+        <h2 class="locations-heading">Restaurant Locations</h2>
+        <div class="locations-grid">
+            <div class="location-card">
+                <img src="/images/barsha.png" alt="Al Barsha Branch" class="location-image">
+                <div class="location-info">
+                    <h3 class="location-name">Al Barsha Branch</h3>
+                    <p class="location-address">Al Barsha 1, Near Mall of the Emirates</p>
+                    <p class="location-phone">+971 4 XXX XXXX</p>
+                </div>
+            </div>
+            <div class="location-card">
+                <img src="/images/marina.jpg" alt="Dubai Marina Branch" class="location-image">
+                <div class="location-info">
+                    <h3 class="location-name">Dubai Marina Branch</h3>
+                    <p class="location-address">Marina Walk, Next to Marina Mall</p>
+                    <p class="location-phone">+971 4 XXX XXXX</p>
+                </div>
+            </div>
+            <div class="location-card">
+                <img src="/images/downtown.jpg" alt="Downtown Dubai Branch" class="location-image">
+                <div class="location-info">
+                    <h3 class="location-name">Downtown Dubai Branch</h3>
+                    <p class="location-address">Sheikh Mohammed Bin Rashid Blvd</p>
+                    <p class="location-phone">+971 4 XXX XXXX</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="contact">
+        <img src="/images/leafpizza.jpg" alt="Fresh Pizza" class="contact-image">
         <form action="mailto:dxbpizzeria128@gmail.com" method="post" enctype="text/plain">
             <label for="name">Full Name:</label>
             <input type="text" name="name" required><br><br>
@@ -128,7 +284,7 @@
     </section>
 
     <script>
-        const feedbackForm = document.getElementById('feedbackForm'); // Ensure this targets the right form
+        const feedbackForm = document.getElementById('feedbackForm');
         feedbackForm.addEventListener('submit', async (e) => {
             e.preventDefault();
     
