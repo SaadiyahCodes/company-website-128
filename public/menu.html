@@ -186,18 +186,18 @@
                 .then(data => {
                     const pizzaSelect = document.querySelector('#pizza');
                     
-                    // Map through the data and create option elements
+                    
                     const options = data.map(pizza => {
                         return `<option value="${pizza.value}" data-price="${pizza.price}">${pizza.label} - $${pizza.price.toFixed(2)}</option>`;
                     }).join('');
                     
-                    // Insert options into the select element
+                    
                     pizzaSelect.innerHTML = options;
         
                     // Set initial pizza price to the price of the first pizza in the list
                     pizzaPrice = parseFloat(pizzaSelect.options[0].getAttribute('data-price'));
         
-                    // Update the total cost on page load
+                    
                     updateTotal();
                 })
                 .catch(error => console.error('Error fetching pizzas.json:', error));
@@ -231,17 +231,17 @@
             });
         
             // Order form submission functionality
-            const orderForm = document.getElementById('order-form'); // Target the order form
+            const orderForm = document.getElementById('order-form'); 
             orderForm.addEventListener('submit', async (e) => {
-                e.preventDefault(); // Prevent the default form submission
+                e.preventDefault(); 
 
                 // Get form data
                 const formData = {
-                    name: document.getElementById('name').value, // Name input
-                    contact: document.getElementById('contact').value, // Contact number input
-                    address: document.getElementById('address').value, // Delivery address input
-                    totalPrice: document.getElementById('total-price').innerText, // Total price (calculated dynamically)
-                    date: new Date().toISOString() // Current date and time for the order
+                    name: document.getElementById('name').value, 
+                    contact: document.getElementById('contact').value, 
+                    address: document.getElementById('address').value, 
+                    totalPrice: document.getElementById('total-price').innerText, 
+                    date: new Date().toISOString() 
                 };
 
                 try {
@@ -251,15 +251,15 @@
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(formData), // Send the form data as JSON
+                        body: JSON.stringify(formData), 
                     });
 
                     if (response.ok) {
                         const result = await response.json();
-                        alert(result.message); // Show a success message
-                        e.target.reset(); // Reset the form after successful submission
+                        alert(result.message); 
+                        e.target.reset();
                     } else {
-                        alert('Failed to save order. Please try again.'); // Error message
+                        alert('Failed to save order. Please try again.'); 
                     }
                 } catch (error) {
                     console.error('Error:', error);
